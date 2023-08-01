@@ -1,4 +1,4 @@
-const {Scheme, model} =  require('mongoose')
+const {Schema, model} =  require('mongoose')
 const deliveryAddressSchema = Schema ({
 
     nama: {
@@ -39,4 +39,4 @@ user: {
 
 }, {timestamps: true});
 
-module.exports = model('DeliveryAdress', deliveryAddressSchema)
+module.exports = model('DeliveryAddress', deliveryAddressSchema)
