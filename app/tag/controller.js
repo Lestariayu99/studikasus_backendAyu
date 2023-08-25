@@ -25,7 +25,7 @@ const store = async (req, res, next) => {
 const update = async (req, res, next) => {
     try { 
         let payload = req.body;
-        let tag= await Tag.findByIdUpdate(req.params.id, payload, {new: true, runValidators: true});   
+        let tag= await Tag.findByIdAndUpdate(req.params.id, payload, {new: true, runValidators: true});   
         return res.json(tag); 
     } catch(err) {                  
         if(err && err.name === 'ValidationError') {

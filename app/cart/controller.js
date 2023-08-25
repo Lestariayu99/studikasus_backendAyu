@@ -3,10 +3,10 @@ const CartItem = require('../cart-item/model');
 
 const update = async(req, res, next) => {
     try {
-        const {item} = req.body;
+        const {items} = req.body;
         const productIds = items.map(item => item.product._id);
         const products = await Product.find({_id: {$in: productIds}});
-        let CartItems = item.map(item => {
+        let cartItems = items.map(item => {
             let relatedProduct = products.find(product => product._id.toString() === item.product._id);
             return {
                 products: relatedProduct._id,
@@ -49,7 +49,7 @@ const update = async(req, res, next) => {
 const index = async(req, res, next) => {
     try {
         let items =
-        await cartItem
+        await CartItem
         .find({user: req.user._id})
         .populate('product');
 

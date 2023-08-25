@@ -10,7 +10,7 @@ router.post(
 );
 
 router.put('delivery-addresses/:id', deliveryAddressController.update);
-// router.delete('./delivery-addresses/:id', deliveryAddressController.destroy);
+router.delete('./delivery-addresses/:id', deliveryAddressController.destroy);
 router.delete('/delivery-addresses/:id', deliveryAddressController.destroy);
 
 router.get(

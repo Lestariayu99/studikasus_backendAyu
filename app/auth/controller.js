@@ -76,7 +76,7 @@ const logout = require = async (req, res, next) => {
     if(!token || !user) {
         res.json({
             error: 1,
-            message: 'No user found !!!'
+            message: 'No User Found !!!'
         });
     }
 return res.json({

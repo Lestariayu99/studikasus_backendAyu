@@ -41,7 +41,7 @@ const policyFor = user => {
         policies[user.role] (user, builder);
 
     } else {
-        policies['gues'](user, builder);
+        policies['guest'](user, builder);
     }
     return new Ability(builder.rules)
 }
