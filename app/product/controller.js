@@ -25,7 +25,7 @@ const store = async (req, res, next) => {
     if(payload.tags && payload.tags.length > 0) {
         let tags = 
         await Tag
-        .find({name: {$in: payload.tags}});
+        .findOne({name: {$in: payload.tags}});
     if(tags.length) {
         payload = {...payload, tags: tags.map(tag => tag._id)};
     } else {
@@ -128,7 +128,7 @@ const update = async (req, res, next) => {
                     let product = await Product.findById(id);
                     let currentImage = `${config.rootPath}/public/images/products/${product.image_url}`;
 
-                    console.log(currentImage);
+                    // console.log(currentImage);
                     if(fs.existsSync(currentImage)) {
                         fs.unlinkSync(currentImage);
                     }
@@ -194,7 +194,7 @@ const index = async (req, res, next) => {
         }
 
         if(category.length) {
-            let categoryResult = await Category.findOne({name: {$regex: `${category}`}, $options: 'i'});
+            let categoryResult = await Category.findOne({name: {$regex: new RegExp(category, 'i')}});
             
             if(categoryResult) {
             criteria = {...criteria, category: categoryResult._id}
@@ -204,9 +204,9 @@ const index = async (req, res, next) => {
         if(tags.length) {
             let tagsResult = await Tag.find({name: {$in: tags}});
             if(tagsResult.length > 0) {
-            criteria = {...criteria, tags: {$in: tagsResult.map(tag => tag._id)}}
-        }
-        }
+                criteria = {...criteria, tags: {$in: tagsResult.map(tag => tag._id)}}
+            }
+          }
         
         let count = await Product.find().countDocuments();
 

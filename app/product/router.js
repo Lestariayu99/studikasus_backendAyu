@@ -20,7 +20,7 @@ router.put('/products/:id',
     productController.update
 );
 router.delete('/products/:id', 
-    police_check('create', 'Product'),
+    police_check('delete', 'Product'),
     productController.destroy);
 
 module.exports = router;
